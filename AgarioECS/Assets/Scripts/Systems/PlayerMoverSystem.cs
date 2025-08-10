@@ -2,8 +2,8 @@ using Authoring;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace Systems
 {
@@ -12,30 +12,29 @@ namespace Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             foreach ((
-                RefRW<LocalTransform> localTransform, 
-                RefRO<PlayerMover> playerMoverAuthoring) 
+                RefRO<LocalTransform> localTransform, 
+                RefRO<PlayerMover> playerMoverAuthoring,
+                RefRW<PhysicsVelocity> physicsVelocity) 
                 in SystemAPI.Query<
-                    RefRW<LocalTransform>, 
-                    RefRO<PlayerMover>>()) {
+                    RefRO<LocalTransform>, 
+                    RefRO<PlayerMover>,
+                    RefRW<PhysicsVelocity>>()) {
 
-                Vector3 playerTargetPosition = playerMoverAuthoring.ValueRO.TargetPosition;
-                
-                float3 newTargetPosition = new float3(playerTargetPosition.x, playerTargetPosition.y, playerTargetPosition.z);
-                float3 moveDirection = newTargetPosition - localTransform.ValueRO.Position;
-                
-                float distance = math.length(moveDirection);
+                float3 targetPosition = playerMoverAuthoring.ValueRO.TargetPosition;
+                float3 moveDirection = GetNormalizedMoveDirection(localTransform, targetPosition);
 
-                if (distance <= PlayerMoverAuthoring.STOPPING_DISTANCE) {
-                    localTransform.ValueRW.Position = newTargetPosition;
-                    continue; 
-                }
-
-                if (!moveDirection.Equals(float3.zero))
-                {
-                    moveDirection = math.normalize(moveDirection);
-                    localTransform.ValueRW.Position += moveDirection * playerMoverAuthoring.ValueRO.MoveSpeed * SystemAPI.Time.DeltaTime;
-                }
+                physicsVelocity.ValueRW.Linear = moveDirection * playerMoverAuthoring.ValueRO.MoveSpeed;
+                physicsVelocity.ValueRW.Angular = float3.zero;
             }
+        }
+
+        private float3 GetNormalizedMoveDirection(RefRO<LocalTransform> transform, float3 targetPosition) {
+            float3 moveDirection = targetPosition - transform.ValueRO.Position;
+
+            moveDirection = math.normalize(moveDirection);
+            moveDirection.y = 0;
+
+            return moveDirection;
         }
     }
 }
