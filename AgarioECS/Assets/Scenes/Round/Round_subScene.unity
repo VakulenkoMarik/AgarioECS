@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   food: {fileID: 9217713877382008428, guid: 04d8fe9cc49c59c4ab56166a28f1e909, type: 3}
+  entitiesSpawnY: 0.5
 --- !u!1001 &749165880
 PrefabInstance:
   m_ObjectHideFlags: 0

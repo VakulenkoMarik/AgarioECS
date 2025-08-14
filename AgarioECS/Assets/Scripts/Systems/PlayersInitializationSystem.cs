@@ -33,10 +33,12 @@ namespace Systems
                 
             float2 randomOffset2D = Random.CreateFromIndex((uint)UnityEngine.Random.Range(1, 100000))
                 .NextFloat2Direction() * UnityEngine.Random.Range(0f, roundData.SpawnRadius);
+            
+            var refs = SystemAPI.GetSingleton<References>();
 
             float3 randomPosition = new float3(
                 roundData.SpawnCenter.x + randomOffset2D.x,
-                roundData.SpawnCenter.y,
+                refs.EntitiesSpawnY,
                 roundData.SpawnCenter.z + randomOffset2D.y
             );
 

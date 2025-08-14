@@ -6,6 +6,7 @@ namespace Authoring
     public class ReferencesAuthoring : MonoBehaviour
     {
         public GameObject food;
+        public float entitiesSpawnY;
         
         public class Baker : Baker<ReferencesAuthoring>
         {
@@ -13,7 +14,8 @@ namespace Authoring
                 Entity entity = GetEntity(TransformUsageFlags.None);
                 
                 AddComponent(entity, new References {
-                    Food = GetEntity(authoring.food, TransformUsageFlags.None)
+                    Food = GetEntity(authoring.food, TransformUsageFlags.None),
+                    EntitiesSpawnY = authoring.entitiesSpawnY
                 });
             }
         }
@@ -22,5 +24,6 @@ namespace Authoring
     public struct References : IComponentData
     {
         public Entity Food;
+        public float EntitiesSpawnY;
     }
 }
