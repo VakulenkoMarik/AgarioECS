@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 627084422}
   - component: {fileID: 627084423}
+  - component: {fileID: 627084424}
   m_Layer: 0
   m_Name: RoundController
   m_TagString: Untagged
@@ -196,10 +197,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesAmount: 5
-  speedOfOnePointPlayers: 0
   enemyPrefab: {fileID: 5596662496593096824, guid: 4d13b04fbeb023b4dbd7635786314a6b, type: 3}
-  playersSpawnCenter: {fileID: 464538616}
-  playersSpawnRadius: 20
+  speedOfOnePointPlayers: 0
+  spawnCenter: {fileID: 464538616}
+  spawnRadius: 20
+  maxFoodAmount: 100
+--- !u!114 &627084424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627084421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94983f6601df4e3ea8de240f5e781a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 9217713877382008428, guid: 04d8fe9cc49c59c4ab56166a28f1e909, type: 3}
 --- !u!1001 &749165880
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,11 +7,13 @@ namespace Authoring
     public class RoundInitializerAuthoring : MonoBehaviour
     {
         [SerializeField] private int enemiesAmount;
-        [SerializeField] private float speedOfOnePointPlayers;
         [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private float speedOfOnePointPlayers;
         
-        [SerializeField] private Transform playersSpawnCenter;
-        [SerializeField] private float playersSpawnRadius;
+        [SerializeField] private Transform spawnCenter;
+        [SerializeField] private float spawnRadius;
+
+        [SerializeField] private int maxFoodAmount;
         
         public class Baker : Baker<RoundInitializerAuthoring>
         {
@@ -22,8 +24,9 @@ namespace Authoring
                     EnemiesAmount = authoring.enemiesAmount,
                     SpeedOfOnePointPlayers = authoring.speedOfOnePointPlayers,
                     EnemyPrefab = GetEntity(authoring.enemyPrefab, TransformUsageFlags.Dynamic),
-                    SpawnCenter = authoring.playersSpawnCenter.position,
-                    SpawnRadius = authoring.playersSpawnRadius
+                    SpawnCenter = authoring.spawnCenter.position,
+                    SpawnRadius = authoring.spawnRadius,
+                    MaxFoodAmount = authoring.maxFoodAmount
                 });
             }
         }
@@ -31,10 +34,13 @@ namespace Authoring
 
     public struct RoundInitializationData : IComponentData
     {
-        public int EnemiesAmount;
-        public float SpeedOfOnePointPlayers;
-        public Entity EnemyPrefab;
         public float3 SpawnCenter;
         public float SpawnRadius;
+        
+        public int EnemiesAmount;
+        public Entity EnemyPrefab;
+        public float SpeedOfOnePointPlayers;
+
+        public int MaxFoodAmount;
     }
 }

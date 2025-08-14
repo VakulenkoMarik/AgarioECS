@@ -12,7 +12,7 @@ namespace Authoring
             public override void Bake(PlayerMoverAuthoring authoring) {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 
-                AddComponent(entity, new PlayerMover {
+                AddComponent(entity, new PlayerMove {
                     MoveSpeed = authoring.moveSpeed,
                     TargetPosition = new Vector3(0, 0, 0)
                 });
@@ -20,7 +20,7 @@ namespace Authoring
         }
     }
 
-    public struct PlayerMover : IComponentData
+    public struct PlayerMove : IComponentData
     {
         public float MoveSpeed;
         public Vector3 TargetPosition;

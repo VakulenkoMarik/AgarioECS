@@ -13,11 +13,11 @@ namespace Systems
         public void OnUpdate(ref SystemState state) {
             foreach ((
                 RefRO<LocalTransform> localTransform, 
-                RefRO<PlayerMover> playerMoverAuthoring,
+                RefRO<PlayerMove> playerMoverAuthoring,
                 RefRW<PhysicsVelocity> physicsVelocity) 
                 in SystemAPI.Query<
                     RefRO<LocalTransform>, 
-                    RefRO<PlayerMover>,
+                    RefRO<PlayerMove>,
                     RefRW<PhysicsVelocity>>()) {
 
                 float3 targetPosition = playerMoverAuthoring.ValueRO.TargetPosition;

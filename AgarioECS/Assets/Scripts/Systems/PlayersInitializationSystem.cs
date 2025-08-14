@@ -6,7 +6,7 @@ using Unity.Transforms;
 
 namespace Systems
 {
-    partial struct RoundInitializationSystem : ISystem
+    partial struct PlayersInitializationSystem : ISystem
     {
         public void OnCreate(ref SystemState state) {
             state.RequireForUpdate<RoundInitializationData>();

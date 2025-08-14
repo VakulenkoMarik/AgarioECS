@@ -23,16 +23,16 @@ namespace MonoBehaviourCustom
             Vector3 mouseWorldPosition = MouseWorldPosition.Instance.GetPosition();
 
             EntityManager entityManager = World. DefaultGameObjectInjectionWorld. EntityManager;
-            EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<PlayerMover>().Build(entityManager);
+            EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<PlayerMove>().Build(entityManager);
 
-            NativeArray<PlayerMover> unitMoverArray = entityQuery.ToComponentDataArray<PlayerMover>(Allocator.Temp);
+            NativeArray<PlayerMove> unitMoverArray = entityQuery.ToComponentDataArray<PlayerMove>(Allocator.Temp);
 
             for (int i = 0; i < unitMoverArray.Length; i++) {
-                PlayerMover unitMover = unitMoverArray[i];
+                PlayerMove unitMove = unitMoverArray[i];
                 
-                unitMover.TargetPosition = mouseWorldPosition;
+                unitMove.TargetPosition = mouseWorldPosition;
                 
-                unitMoverArray[i] = unitMover;
+                unitMoverArray[i] = unitMove;
             }
             
             entityQuery.CopyFromComponentDataArray(unitMoverArray);
