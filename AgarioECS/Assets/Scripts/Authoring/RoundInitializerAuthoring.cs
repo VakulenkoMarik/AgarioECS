@@ -6,13 +6,15 @@ namespace Authoring
 {
     public class RoundInitializerAuthoring : MonoBehaviour
     {
-        [SerializeField] private int enemiesAmount;
-        [SerializeField] private GameObject enemyPrefab;
+        [Header("-- Players settings --")]
+        [SerializeField] private int playersAmount;
         [SerializeField] private float speedOfOnePointPlayers;
         
+        [Header("-- Spawn --")]
         [SerializeField] private Transform spawnCenter;
         [SerializeField] private float spawnRadius;
-
+        
+        [Header("-- Gameplay settings --")]
         [SerializeField] private int maxFoodAmount;
         
         public class Baker : Baker<RoundInitializerAuthoring>
@@ -21,9 +23,8 @@ namespace Authoring
                 Entity entity = GetEntity(TransformUsageFlags.None);
                 
                 AddComponent(entity, new RoundInitializationData {
-                    EnemiesAmount = authoring.enemiesAmount,
+                    PlayersAmount = authoring.playersAmount,
                     SpeedOfOnePointPlayers = authoring.speedOfOnePointPlayers,
-                    EnemyPrefab = GetEntity(authoring.enemyPrefab, TransformUsageFlags.Dynamic),
                     SpawnCenter = authoring.spawnCenter.position,
                     SpawnRadius = authoring.spawnRadius,
                     MaxFoodAmount = authoring.maxFoodAmount
@@ -37,8 +38,7 @@ namespace Authoring
         public float3 SpawnCenter;
         public float SpawnRadius;
         
-        public int EnemiesAmount;
-        public Entity EnemyPrefab;
+        public int PlayersAmount;
         public float SpeedOfOnePointPlayers;
 
         public int MaxFoodAmount;

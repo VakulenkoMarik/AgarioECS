@@ -22,7 +22,7 @@ namespace MonoBehaviourCustom
         private void UpdateTargetPositions(InputAction.CallbackContext obj) {
             Vector3 mouseWorldPosition = MouseWorldPosition.Instance.GetPosition();
 
-            EntityManager entityManager = World. DefaultGameObjectInjectionWorld. EntityManager;
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<PlayerMove>().Build(entityManager);
 
             NativeArray<PlayerMove> unitMoverArray = entityQuery.ToComponentDataArray<PlayerMove>(Allocator.Temp);
