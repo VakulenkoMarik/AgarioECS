@@ -6,18 +6,15 @@ namespace Authoring
     public class ReferencesAuthoring : MonoBehaviour
     {
         [Header("-- Controllers --")]
-        public GameObject humanController;
-        public GameObject aiController;
+        [SerializeField] private GameObject humanController;
+        [SerializeField] private GameObject aiController;
         
         [Header("-- Players --")]
-        public GameObject inputPlayer;
-        public GameObject aiPlayer;
+        [SerializeField] private GameObject inputPlayer;
+        [SerializeField] private GameObject aiPlayer;
         
         [Header("-- Gameplay objects --")]
-        public GameObject food;
-        
-        [Header("-- Global settings --")]
-        public float entitiesSpawnY;
+        [SerializeField] private GameObject food;
         
         public class Baker : Baker<ReferencesAuthoring>
         {
@@ -30,7 +27,6 @@ namespace Authoring
                     AIPlayer = GetEntity(authoring.aiPlayer, TransformUsageFlags.None),
                     HumanController = GetEntity(authoring.humanController, TransformUsageFlags.None),
                     AIController = GetEntity(authoring.aiController, TransformUsageFlags.None),
-                    EntitiesSpawnY = authoring.entitiesSpawnY
                 });
             }
         }
@@ -45,7 +41,5 @@ namespace Authoring
 
         public Entity HumanController;
         public Entity AIController;
-        
-        public float EntitiesSpawnY;
     }
 }

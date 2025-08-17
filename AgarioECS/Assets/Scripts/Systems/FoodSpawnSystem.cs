@@ -51,7 +51,7 @@ namespace Systems
 
             for (int i = _currentFoodsAmount; i < roundData.MaxFoodAmount; i++) {
                 Entity newFood = ecb.Instantiate(refs.Food);
-                float3 spawnPos = GetSpawnPosition(roundData.SpawnRadius, refs.EntitiesSpawnY);
+                float3 spawnPos = GetSpawnPosition(roundData.SpawnRadius, roundData.EntitiesSpawnY);
 
                 ecb.SetComponent(newFood, LocalTransform.FromPosition(spawnPos));
             }

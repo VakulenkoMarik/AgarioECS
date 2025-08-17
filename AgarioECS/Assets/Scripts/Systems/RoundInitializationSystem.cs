@@ -42,7 +42,7 @@ namespace Systems
         }
 
         private void InitializeInputController(ref EntityCommandBuffer ecb) {
-            float3 pos = new float3(0, _references.EntitiesSpawnY, 0);
+            float3 pos = new float3(0, _roundData.EntitiesSpawnY, 0);
             
             Entity player = CreateEntity(ref ecb, _references.InputPlayer, pos);
             Entity controller = CreateEntity(ref ecb, _references.HumanController, float3.zero);
@@ -77,9 +77,9 @@ namespace Systems
 
         private float3 GenerateRandomPosition(float3 center, float radius) {
             var rand = Random.CreateFromIndex((uint)UnityEngine.Random.Range(1, int.MaxValue));
-            float2 offset2D = rand.NextFloat2Direction() * UnityEngine.Random.Range(0f, radius);
+            float2 offset2D = rand.NextFloat2Direction() * UnityEngine.Random.Range(_roundData.MinInitialDistanceBetweenHumanAndAi, radius);
 
-            return new float3(center.x + offset2D.x, _references.EntitiesSpawnY, center.z + offset2D.y);
+            return new float3(center.x + offset2D.x, _roundData.EntitiesSpawnY, center.z + offset2D.y);
         }
     }
 }
