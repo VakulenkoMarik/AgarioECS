@@ -203,6 +203,7 @@ MonoBehaviour:
   maxFoodAmount: 100
   entitiesSpawnY: 0.5
   minInitialDistanceBetweenHumanAndAi: 5
+  speedOfCameraFollow: 5
 --- !u!114 &627084424
 MonoBehaviour:
   m_ObjectHideFlags: 0

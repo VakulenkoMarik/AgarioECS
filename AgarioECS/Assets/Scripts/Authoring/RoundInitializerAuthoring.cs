@@ -18,6 +18,7 @@ namespace Authoring
         [SerializeField] private int maxFoodAmount;
         [SerializeField] private float entitiesSpawnY;
         [SerializeField] private float minInitialDistanceBetweenHumanAndAi;
+        [SerializeField] private float speedOfCameraFollow;
         
         public class Baker : Baker<RoundInitializerAuthoring>
         {
@@ -31,7 +32,8 @@ namespace Authoring
                     SpawnRadius = authoring.spawnRadius,
                     MaxFoodAmount = authoring.maxFoodAmount,
                     EntitiesSpawnY = authoring.entitiesSpawnY,
-                    MinInitialDistanceBetweenHumanAndAi = authoring.minInitialDistanceBetweenHumanAndAi
+                    MinInitialDistanceBetweenHumanAndAi = authoring.minInitialDistanceBetweenHumanAndAi,
+                    SpeedOfCameraFollow = authoring.speedOfCameraFollow
                 });
             }
         }
@@ -48,5 +50,7 @@ namespace Authoring
         public float MinInitialDistanceBetweenHumanAndAi;
 
         public int MaxFoodAmount;
+        
+        public float SpeedOfCameraFollow;
     }
 }
