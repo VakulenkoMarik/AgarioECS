@@ -48,6 +48,8 @@ namespace Systems
             Entity controller = CreateEntity(ref ecb, _references.HumanController, float3.zero);
 
             ecb.SetComponent(controller, new HumanController { PlayerEntity = player });
+            
+            ecb.SetComponentEnabled<CameraFollowTarget>(player, true);
         }
 
         private void InitializeAiControllers(ref EntityCommandBuffer ecb) {
