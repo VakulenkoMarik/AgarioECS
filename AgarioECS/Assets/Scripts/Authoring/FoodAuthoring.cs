@@ -5,7 +5,7 @@ namespace Authoring
 {
     public class FoodAuthoring : MonoBehaviour
     {
-        public float kilogram;
+        [SerializeField] private int kilogram;
         
         public class Baker : Baker<FoodAuthoring>
         {
@@ -21,6 +21,6 @@ namespace Authoring
 
     public struct Food : IComponentData
     {
-        public float Kilogram;
+        public int Kilogram;
     }
 }

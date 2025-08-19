@@ -9,6 +9,8 @@ namespace Authoring
         [Header("-- Players settings --")]
         [SerializeField] private int playersAmount;
         [SerializeField] private float speedOfOnePointPlayers;
+        [SerializeField] private int startInputPlayerKilogramValue;
+        [SerializeField] private int2 minMaxStartAiKilogramValue;
         
         [Header("-- Spawn --")]
         [SerializeField] private Transform spawnCenter;
@@ -33,7 +35,9 @@ namespace Authoring
                     MaxFoodAmount = authoring.maxFoodAmount,
                     EntitiesSpawnY = authoring.entitiesSpawnY,
                     MinInitialDistanceBetweenHumanAndAi = authoring.minInitialDistanceBetweenHumanAndAi,
-                    SpeedOfCameraFollow = authoring.speedOfCameraFollow
+                    SpeedOfCameraFollow = authoring.speedOfCameraFollow,
+                    StartInputPlayerKilogramValue = authoring.startInputPlayerKilogramValue,
+                    MinMaxStartAiKilogramValue = authoring.minMaxStartAiKilogramValue,
                 });
             }
         }
@@ -46,6 +50,8 @@ namespace Authoring
         public float EntitiesSpawnY;
         
         public int PlayersAmount;
+        public int StartInputPlayerKilogramValue;
+        public int2 MinMaxStartAiKilogramValue;
         public float SpeedOfOnePointPlayers;
         public float MinInitialDistanceBetweenHumanAndAi;
 

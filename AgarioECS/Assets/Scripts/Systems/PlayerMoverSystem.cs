@@ -1,4 +1,4 @@
-using Authoring;
+using Authoring.Player;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;

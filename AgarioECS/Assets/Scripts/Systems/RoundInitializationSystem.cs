@@ -1,5 +1,6 @@
 using Authoring;
 using Authoring.Controllers;
+using Authoring.Player;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -49,6 +50,14 @@ namespace Systems
 
             ecb.SetComponent(controller, new HumanController { PlayerEntity = player });
             
+            SetUpInputPlayer(ref ecb, player);
+        }
+
+        private void SetUpInputPlayer(ref EntityCommandBuffer ecb, Entity player) {
+            ecb.SetComponent(player, new PlayerFat {
+                CurrentKilogramsValue = _roundData.StartInputPlayerKilogramValue
+            });
+            
             ecb.SetComponentEnabled<CameraFollowTarget>(player, true);
         }
 
@@ -60,7 +69,27 @@ namespace Systems
                 Entity controller = CreateEntity(ref ecb, _references.AIController, float3.zero);
 
                 ecb.SetComponent(controller, new AIController { PlayerEntity = player });
+                
+                SetUpAiPlayer(ref ecb, player);
             }
+        }
+        
+        private void SetUpAiPlayer(ref EntityCommandBuffer ecb, Entity player) {
+            int minKiloValue = _roundData.MinMaxStartAiKilogramValue.x;
+            int maxKiloValue = _roundData.MinMaxStartAiKilogramValue.y;
+            
+            int kilogramValue = UnityEngine.Random.Range(minKiloValue, maxKiloValue);
+            
+            ecb.SetComponent(player, new PlayerFat {
+                CurrentKilogramsValue = kilogramValue
+            });
+        }
+        
+        private float3 GenerateRandomPosition(float3 center, float radius) {
+            var rand = Random.CreateFromIndex((uint)UnityEngine.Random.Range(1, int.MaxValue));
+            float2 offset2D = rand.NextFloat2Direction() * UnityEngine.Random.Range(_roundData.MinInitialDistanceBetweenHumanAndAi, radius);
+
+            return new float3(center.x + offset2D.x, _roundData.EntitiesSpawnY, center.z + offset2D.y);
         }
 
         private Entity CreateEntity(ref EntityCommandBuffer ecb, Entity prefab, float3 position) {
@@ -75,13 +104,6 @@ namespace Systems
                 Rotation = quaternion.identity,
                 Scale = 0.5f
             });
-        }
-
-        private float3 GenerateRandomPosition(float3 center, float radius) {
-            var rand = Random.CreateFromIndex((uint)UnityEngine.Random.Range(1, int.MaxValue));
-            float2 offset2D = rand.NextFloat2Direction() * UnityEngine.Random.Range(_roundData.MinInitialDistanceBetweenHumanAndAi, radius);
-
-            return new float3(center.x + offset2D.x, _roundData.EntitiesSpawnY, center.z + offset2D.y);
         }
     }
 }

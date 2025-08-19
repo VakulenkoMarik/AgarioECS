@@ -1,11 +1,11 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace Authoring
+namespace Authoring.Player
 {
     public class PlayerMoverAuthoring : MonoBehaviour
     {
-        public float moveSpeed;
+        [SerializeField] private float moveSpeed;
         
         public class Baker : Baker<PlayerMoverAuthoring>
         {

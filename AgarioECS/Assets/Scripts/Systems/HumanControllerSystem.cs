@@ -1,5 +1,6 @@
 using Authoring;
 using Authoring.Controllers;
+using Authoring.Player;
 using MonoBehaviourCustom;
 using Unity.Burst;
 using Unity.Entities;
