@@ -1,6 +1,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Authoring
 {
@@ -20,7 +21,11 @@ namespace Authoring
         [SerializeField] private int maxFoodAmount;
         [SerializeField] private float entitiesSpawnY;
         [SerializeField] private float minInitialDistanceBetweenHumanAndAi;
+        
+        [Header("-- Camera --")]
         [SerializeField] private float speedOfCameraFollow;
+        [SerializeField] private float cameraYOffset;
+        [SerializeField] private float minCameraYSize;
         
         public class Baker : Baker<RoundInitializerAuthoring>
         {
@@ -38,6 +43,8 @@ namespace Authoring
                     SpeedOfCameraFollow = authoring.speedOfCameraFollow,
                     StartInputPlayerKilogramValue = authoring.startInputPlayerKilogramValue,
                     MinMaxStartAiKilogramValue = authoring.minMaxStartAiKilogramValue,
+                    CameraYOffset = authoring.cameraYOffset,
+                    MinCameraYSize = authoring.minCameraYSize,
                 });
             }
         }
@@ -58,5 +65,7 @@ namespace Authoring
         public int MaxFoodAmount;
         
         public float SpeedOfCameraFollow;
+        public float CameraYOffset;
+        public float MinCameraYSize;
     }
 }
