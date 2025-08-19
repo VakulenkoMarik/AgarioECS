@@ -1,4 +1,4 @@
-using Authoring.Player;
+using Authoring;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -7,17 +7,17 @@ using Unity.Transforms;
 
 namespace Systems
 {
-    partial struct PlayerMoverSystem : ISystem
+    partial struct MoveSystem : ISystem
     {
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             foreach ((
                 RefRO<LocalTransform> localTransform, 
-                RefRO<PlayerMove> playerMoverAuthoring,
+                RefRO<Move> playerMoverAuthoring,
                 RefRW<PhysicsVelocity> physicsVelocity) 
                 in SystemAPI.Query<
                     RefRO<LocalTransform>, 
-                    RefRO<PlayerMove>,
+                    RefRO<Move>,
                     RefRW<PhysicsVelocity>>()) {
 
                 float3 targetPosition = playerMoverAuthoring.ValueRO.TargetPosition;

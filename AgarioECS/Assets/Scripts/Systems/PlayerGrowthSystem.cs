@@ -1,4 +1,4 @@
-using Authoring.Player;
+using Authoring;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -11,11 +11,12 @@ namespace Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             foreach ((
-                RefRW<PlayerFat> playerFat, 
+                RefRW<Fat> playerFat,
                 RefRW<PostTransformMatrix> postTransformMatrix)
                 in SystemAPI.Query<
-                    RefRW<PlayerFat>, 
-                    RefRW<PostTransformMatrix>>()) {
+                    RefRW<Fat>,
+                    RefRW<PostTransformMatrix>>()
+                    .WithAll<Move>()) {
 
                 if (NeedChangeScale(playerFat)) {
                     float radius = GetRadius(playerFat.ValueRO.CurrentKilogramsValue);
@@ -27,7 +28,7 @@ namespace Systems
             }
         }
 
-        private bool NeedChangeScale(RefRW<PlayerFat>  playerFat) {
+        private bool NeedChangeScale(RefRW<Fat>  playerFat) {
             return playerFat.ValueRO.CurrentKilogramsValue != playerFat.ValueRO.LastKilogramsValue;
         }
 
@@ -43,7 +44,7 @@ namespace Systems
             );
         }
 
-        private void UpdatePlayerFatValue(RefRW<PlayerFat> playerFat) {
+        private void UpdatePlayerFatValue(RefRW<Fat> playerFat) {
             playerFat.ValueRW.LastKilogramsValue = playerFat.ValueRO.CurrentKilogramsValue;
         }
     }

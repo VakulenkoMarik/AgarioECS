@@ -1,6 +1,5 @@
 using Authoring;
 using Authoring.Controllers;
-using Authoring.Player;
 using MonoBehaviourCustom;
 using Unity.Burst;
 using Unity.Entities;
@@ -37,7 +36,7 @@ namespace Systems
 
         private void NewPositionForPlayerProcess(ref SystemState state, RefRO<HumanController> humanController) {
             if (IsValidController(ref state, humanController)) {
-                var mover = state.EntityManager.GetComponentData<PlayerMove>(humanController.ValueRO.PlayerEntity);
+                var mover = state.EntityManager.GetComponentData<Move>(humanController.ValueRO.PlayerEntity);
                 mover.TargetPosition = _lastPosition;
                 state.EntityManager.SetComponentData(humanController.ValueRO.PlayerEntity, mover);
             }
@@ -45,7 +44,7 @@ namespace Systems
 
         private bool IsValidController(ref SystemState state, RefRO<HumanController> humanController) {
             return humanController.ValueRO.PlayerEntity != Entity.Null &&
-                   state.EntityManager.HasComponent<PlayerMove>(humanController.ValueRO.PlayerEntity);
+                   state.EntityManager.HasComponent<Move>(humanController.ValueRO.PlayerEntity);
         }
     }
 }

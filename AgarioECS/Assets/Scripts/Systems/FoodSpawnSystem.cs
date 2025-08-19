@@ -38,7 +38,11 @@ namespace Systems
         }
 
         private void CheckCurrentFoodsAmount(ref SystemState state) {
-            _currentFoodsAmount = SystemAPI.QueryBuilder().WithAll<Food>().Build().CalculateEntityCount();
+            _currentFoodsAmount = SystemAPI.QueryBuilder()
+                .WithAll<Fat>()
+                .WithNone<Move>()
+                .Build()
+                .CalculateEntityCount();
         }
 
         private bool NeedToSpawnFoods(int maxFoodsAmount) {
@@ -61,7 +65,6 @@ namespace Systems
 
         private float3 GetSpawnPosition(float spawnRadius, float spawnY) {
             float2 offset = _random.NextFloat2Direction() * _random.NextFloat(0f, spawnRadius);
-            
             float3 spawnPos = new float3(offset.x, spawnY, offset.y);
 
             return spawnPos;

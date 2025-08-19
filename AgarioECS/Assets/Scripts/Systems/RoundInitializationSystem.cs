@@ -1,6 +1,5 @@
 using Authoring;
 using Authoring.Controllers;
-using Authoring.Player;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -54,7 +53,7 @@ namespace Systems
         }
 
         private void SetUpInputPlayer(ref EntityCommandBuffer ecb, Entity player) {
-            ecb.SetComponent(player, new PlayerFat {
+            ecb.SetComponent(player, new Fat {
                 CurrentKilogramsValue = _roundData.StartInputPlayerKilogramValue
             });
             
@@ -80,7 +79,7 @@ namespace Systems
             
             int kilogramValue = UnityEngine.Random.Range(minKiloValue, maxKiloValue);
             
-            ecb.SetComponent(player, new PlayerFat {
+            ecb.SetComponent(player, new Fat {
                 CurrentKilogramsValue = kilogramValue
             });
         }

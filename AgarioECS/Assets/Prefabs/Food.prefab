@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1174734103203539578}
   - component: {fileID: 2343556442081843389}
   - component: {fileID: 2492895299479080194}
-  - component: {fileID: 6838140076254374371}
+  - component: {fileID: 4437725842561170393}
   m_Layer: 0
   m_Name: Food
   m_TagString: Untagged
@@ -111,7 +111,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6838140076254374371
+--- !u!114 &4437725842561170393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9217713877382008428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2658e22c0647d60449580cd76e98e353, type: 3}
+  m_Script: {fileID: 11500000, guid: 9613fd4e23e33b148a6d75510f3f4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kilogram: 5
+  currentKilogram: 2
